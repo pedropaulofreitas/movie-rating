@@ -68,16 +68,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
     let searchTerms: Filter = JSON.parse(filter);
 
     let titleSearch = () => {
-      let found = false;
-
-      if(!searchTerms.title)
+      if(data.title.toLowerCase().match(searchTerms.title.toLowerCase()))
         return true
-
-      searchTerms.title.trim().toLowerCase().split(' ').forEach((word: any) => {
-        if (data.title.toLowerCase().indexOf(word) != -1) { found = true }
-      });
-
-      return found
+      
+      return false
     }
 
     let genreSearch = () => {

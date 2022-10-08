@@ -20,3 +20,23 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.mat-header-row {
+    vertical-align: top;
+}
+
+.mat-row {
+    &:nth-child(even){
+        background-color: #F8F8F8;
+    }
+
+    &:nth-child(odd){
+        background-color: #F5F5F5;
+    }
+
+    &:hover {
+        background-color:#E0E0E0;
+        cursor: pointer;
+    }
+}
+
