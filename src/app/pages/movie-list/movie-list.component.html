@@ -1,1 +1,45 @@
-<p>movie-list works!</p>
+
+
+
+
+<div class="flex-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef> Title </th>
+          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef> Year </th>
+          <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="runtime">
+          <th mat-header-cell *matHeaderCellDef> Runtime </th>
+          <td mat-cell *matCellDef="let element"> {{element.runtime}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="revenue">
+          <th mat-header-cell *matHeaderCellDef> Revenue </th>
+          <td mat-cell *matCellDef="let element"> {{element.revenue}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef> Rating </th>
+            <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="genre">
+            <th mat-header-cell *matHeaderCellDef> Genres </th>
+            <td mat-cell *matCellDef="let element"> {{element.genre}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>    
+</div>
+
+
+  

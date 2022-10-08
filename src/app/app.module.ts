@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
+import { MatTableModule } from '@angular/material/table'  
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MovieListComponent } from './pages/movie-list/movie-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
