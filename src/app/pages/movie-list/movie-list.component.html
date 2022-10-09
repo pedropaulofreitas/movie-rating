@@ -1,5 +1,8 @@
+
+
 <div class="flex-container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-spinner *ngIf="pageLoading"></mat-spinner>
+    <table  *ngIf="!pageLoading" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef> Title
             <div>
@@ -54,7 +57,7 @@
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
     </table>    
 </div>
 

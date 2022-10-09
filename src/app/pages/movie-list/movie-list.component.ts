@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { debounceTime, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, debounceTime, Subscription } from 'rxjs';
 import { Movie } from 'src/app/models/movie';
 import { Filter } from 'src/app/models/movieFilter';
 import { MovieService } from 'src/app/services/movie.service'
@@ -13,6 +14,7 @@ import { MovieService } from 'src/app/services/movie.service'
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit, OnDestroy {
+  public pageLoading: boolean = true;
   moviesData: Movie[] = [];
   genresList: string[] = [];
   displayedColumns: string[] = ['title', 'year', 'runtime', 'revenue', 'rating', 'genre'];
@@ -26,7 +28,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private _router: Router
   ) {}
   
   ngOnInit(): void {
@@ -46,6 +49,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
       this.dataSource.filterPredicate = this._filterPredicate;
 
       this.genresList = ['All', ...new Set(movies.flatMap((x) => x.genre))];
+      this.pageLoading = false;
     });
   }
 
@@ -64,6 +68,12 @@ export class MovieListComponent implements OnInit, OnDestroy {
     })
   }
 
+  public onRowClicked(row: any) {
+    console.log(row.title);
+    this._router.navigate([`/details/${row.title}`]);
+  }
+
+
   private _filterPredicate(data: Movie, filter: string): boolean {
     let searchTerms: Filter = JSON.parse(filter);
 
@@ -81,6 +91,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
         return searchTerms.genres.includes(element);
       });
     }
+
 
     return titleSearch() && genreSearch() 
   }
