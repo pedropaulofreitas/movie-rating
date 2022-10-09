@@ -2,3 +2,23 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+table {
+    width: 100%;
+}
+
+.flex-container {
+    height: 100%;
+    padding: 10%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.mat-icon{
+    height:25px !important;
+    width:25px !important;
+    font-size:25px !important;
+  }
+  
