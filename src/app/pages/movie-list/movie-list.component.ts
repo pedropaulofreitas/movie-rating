@@ -45,10 +45,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
   private _getMovies(): void  {
     this.movieService.getMovies().subscribe(movies => {
-      this.dataSource = new MatTableDataSource(movies);
+      this.dataSource = new MatTableDataSource(movies.sort((a,b) => (a.title > b.title)? 1 : -1));
       this.dataSource.filterPredicate = this._filterPredicate;
 
-      this.genresList = ['All', ...new Set(movies.flatMap((x) => x.genre))];
+      this.genresList = ['All', ...new Set(movies.flatMap((x) => x.genre).sort())];
       this.pageLoading = false;
     });
   }
