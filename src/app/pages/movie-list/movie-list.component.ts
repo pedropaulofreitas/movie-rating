@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -15,17 +15,16 @@ import { MovieService } from 'src/app/services/movie.service'
 })
 export class MovieListComponent implements OnInit, OnDestroy {
   public pageLoading: boolean = true;
-  moviesData: Movie[] = [];
-  genresList: string[] = [];
-  displayedColumns: string[] = ['title', 'year', 'runtime', 'revenue', 'rating', 'genre'];
+  public moviesData: Movie[] = [];
+  public genresList: string[] = [];
+  public displayedColumns: string[] = ['title'];
 
-  titleFilter = new FormControl();
-  genresFilter = new FormControl(['All']);
-  dataSource: MatTableDataSource<Movie> = new MatTableDataSource();
+  public titleFilter = new FormControl();
+  public genresFilter = new FormControl(['All']);
+  public dataSource: MatTableDataSource<Movie> = new MatTableDataSource();
   
-  titleFilterSubscription: Subscription | undefined;
-  genresFilterSubscription: Subscription | undefined;
-
+  public titleFilterSubscription: Subscription | undefined;
+  public genresFilterSubscription: Subscription | undefined;
 
   constructor(
     private movieService: MovieService,
@@ -33,14 +32,25 @@ export class MovieListComponent implements OnInit, OnDestroy {
   ) {}
   
   ngOnInit(): void {
-
+    this._setVisibleColumns();
     this._setFiltersListeners();
     this._getMovies();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+   this._setVisibleColumns();
   }
 
   ngOnDestroy() {
     this.titleFilterSubscription?.unsubscribe();
     this.genresFilterSubscription?.unsubscribe();
+  }
+
+  private _setVisibleColumns(): void {
+    this.displayedColumns =  
+    (window.innerWidth < 700) ?
+      ['title'] : ['title', 'year', 'runtime', 'revenue', 'rating', 'genre'];
   }
 
   private _getMovies(): void  {
@@ -69,7 +79,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   public onRowClicked(row: any) {
-    console.log(row.title);
     this._router.navigate([`/details/${row.title}`]);
   }
 

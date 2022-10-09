@@ -105,6 +105,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "movie-chat-web-app:build:production",
+            "firebaseProject": "matchdev-44d32",
+            "firebaseHostingSite": "matchdev-44d32"
+          }
         }
       }
     }

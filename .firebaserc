@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "matchdev-44d32": {
+      "hosting": {
+        "movie-chat-web-app": [
+          "matchdev-44d32"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "matchdev-44d32"
+  }
+}
