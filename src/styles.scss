@@ -7,11 +7,15 @@ table {
     width: 100%;
 }
 
+.mat-paginator {
+    width: 100%;
+}
 .flex-container {
     height: 100%;
     padding: 10%;
     margin: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieComment } from 'src/app/models/comment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { empty, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SnackComponent } from 'src/app/components/snack/snack.component';
 
 
@@ -31,24 +31,24 @@ export class MovieDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.title =  this._route.snapshot.paramMap.get('title');
-
-    this._itemsCollection = this.afs.collection<MovieComment>(this.title? this.title : '');
-
+    this.title = this._route.snapshot.paramMap.get('title');
+    this._itemsCollection = this.afs.collection<MovieComment>(this.title ? this.title : '');
     this.getMovieComments();
   }
 
   public getMovieComments(): void {
     this.items$ = this._itemsCollection?.valueChanges();
     this.items$?.subscribe(() => this.pageLoading = false);
-  } 
+  }
 
   public saveComment(): void {
-   this.afs.collection<MovieComment>(this.title? this.title : '')
-    .add({text: this.comment.value, author:'john'}).finally( () => 
-      this.openSnackBar()
-    );
+    this.afs.collection<MovieComment>(this.title ? this.title : '')
+      .add({ text: this.comment.value, author: 'john' }).finally(() => {
+          this.openSnackBar()
+          this.comment.setValue('');
+        }
+        
+      );
   }
 
   public openSnackBar(): void {
@@ -61,7 +61,7 @@ export class MovieDetailsComponent implements OnInit {
     this._router.navigate(['/']);
   }
 
-  
+
 }
 
 

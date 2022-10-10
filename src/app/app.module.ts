@@ -19,6 +19,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { SnackComponent } from './components/snack/snack.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SnackComponent } from './components/snack/snack.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatPaginatorModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
