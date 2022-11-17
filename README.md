@@ -2,8 +2,7 @@
 
 # My movie chat web app
 
-A simple angular app that gets movies metadata from a public API, displays it and save movie comments to f
-Firestore.
+A simple angular app that gets movies metadata from a public API, displays it and save movie comments to firestore.
 
 ## How to run the code
 	
